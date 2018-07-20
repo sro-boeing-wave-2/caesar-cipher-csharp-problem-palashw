@@ -7,7 +7,27 @@ namespace CaesarCipher
     {
         public static string Rotate(string text, int shiftKey)
         {
-            throw new NotImplementedException("You need to implement this function.");
+            string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            string ciphertext = "";
+
+            foreach (char c in text)
+            {
+                if(alphabet.Contains(c.ToString().ToLower()) == false)
+                {
+                    ciphertext += c;
+                }
+                else if(alphabet.IndexOf(c.ToString().ToLower()) + shiftKey > 25)
+                {
+                    ciphertext += char.IsUpper(c) ? alphabet[alphabet.IndexOf(c.ToString().ToLower()) + shiftKey - 26].ToString().ToUpper(): alphabet[alphabet.IndexOf(c.ToString().ToLower()) + shiftKey - 26].ToString();
+                }
+                else
+                {
+                    ciphertext += char.IsUpper(c) ? alphabet[alphabet.IndexOf(c.ToString().ToLower()) + shiftKey].ToString().ToUpper(): alphabet[alphabet.IndexOf(c.ToString().ToLower()) + shiftKey].ToString();
+                }
+            }
+            
+            return ciphertext;
+
         }
     }
 }
